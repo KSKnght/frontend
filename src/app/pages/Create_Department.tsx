@@ -4,20 +4,6 @@ import Submit_button from '../components/submit_button'
 import axios from 'axios';
 import { Await } from 'react-router-dom';
 import { PrismaClient } from '@prisma/client/extension';
-import prisma from '../../../lib/prisma';
-
-
-
-async function Department(name: string) {
-  const data = prisma.departments.create({
-    data: {
-      dept_name: name,
-      status: 'ACTIVE'
-    }
-  })
-  return data;
-}
-
 
 
 const Create_Department = () => {
