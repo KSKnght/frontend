@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Add_button from '../components/add_button'
 import Actions from '../components/actions'
 import Edit_departments from '../components/edit_departments'
+import axios from 'axios'
 
 const Table = () => {
+  const [data, setData] = useState<any[]>([])
+
+  useEffect(()=> {
+    axios.get('http://localhost:8081/list')
+    .then(res => {setData(res.data); console.log(res.data)})
+    .catch();
+  }, [])
+
   return (
     <div className='flex min-h-screen flex-col p-8 overflow-x-hidden'>
         <div className='flex justify-between'>
@@ -14,28 +23,30 @@ const Table = () => {
         </div>
       </div>
       <div className='py-14'>
-        <table className='table-fixed w-full'>
-          <thead className='text-left border-b-4 border-black pl-5'>
+        <table className='table w-full'>
+          <thead className='text-center border-b-4 border-black pl-5'>
             <tr className='text-lg'>
-              <th>Employee Number</th>
+              <th>Emp Number</th>
               <th>First Name</th>
               <th>Last Name</th>
               <th>Designation</th>
               <th>Department</th>
-              <th>Staus</th>
+              <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr className='border-b-2 border-slate-200'>
-              <td>1</td>
-              <td>Earl Geibriel</td>
-              <td>Dicipulo</td>
-              <td>Front-end Developer</td>
-              <td>Computer Science</td>
-              <td>Active</td>
-              <td><Actions /></td>
+            {data.map((emp, i) => {
+              return <tr key={i} className='border-b-2 border-slate-200 text-center'>
+              <td>{emp.emp_num}</td>
+              <td>{emp.firstname}</td>
+              <td>{emp.lastname}</td>
+              <td>{(emp.ass_des[0] == null) ? 'Not Assigned' : emp.ass_des[0].designationName}</td>
+              <td>{(emp.ass_des[0] == null) ? 'Not Assigned' : emp.ass_des[0].designationDepartment}</td>
+              <td>{(emp.ass_des[0] == null) ? 'Not Assigned' : emp.ass_des[0].status}</td>
+              <td><Actions id={emp.id} /></td>
             </tr>
+            })} 
           </tbody>
         </table>
       </div>
