@@ -42,7 +42,7 @@ const Table = () => {
               <td>{emp.firstname}</td>
               <td>{emp.lastname}</td>
               <td>{(emp.ass_des[0] == null) ? 'Not Assigned' : emp.ass_des[0].designationName}</td>
-              <td>{(emp.ass_des[0] == null) ? 'Not Assigned' : emp.ass_des[0].designationDepartment}</td>
+              <td>{(emp.ass_des[0] == null) ? 'Not Assigned' : emp.ass_des[0].DepartmentName}</td>
               <td>{(emp.ass_des[0] == null) ? 'Not Assigned' : emp.ass_des[0].status}</td>
               <td><Actions id={emp.id} /></td>
             </tr>
