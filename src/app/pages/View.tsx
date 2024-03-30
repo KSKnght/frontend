@@ -38,7 +38,7 @@ const View = () => {
                 country: res.data.country,
                 zipcode: res.data.zipcode,
                 designationName: res.data.ass_des[0].designationName,
-                designationDepartment: res.data.ass_des[0].designationDepartment,
+                designationDepartment: res.data.ass_des[0].DepartmentName,
                 emp_type: res.data.ass_des[0].emp_type,
                 status: res.data.ass_des[0].status
             });

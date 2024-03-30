@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import Department_back from '../components/department_back'
 import Submit_button from '../components/submit_button'
 import axios from 'axios';
-import { Await } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { PrismaClient } from '@prisma/client/extension';
 
 
 const Create_Department = () => {
+  const nav = useNavigate()
+
   const [dep, setDep] = useState({
     depName: '',
   })
@@ -17,6 +19,8 @@ const Create_Department = () => {
         console.log(res);
     })
     .catch(err => console.log(err));
+    nav('/Departments');
+    location.reload();
 }
 
   return (
@@ -41,7 +45,6 @@ const Create_Department = () => {
             </button>
           </div>
         </form>
-        
     </div>
   )
 }
